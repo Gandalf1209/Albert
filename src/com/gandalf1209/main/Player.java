@@ -27,4 +27,24 @@ public class Player {
 		}
 	}
 	
+	public static void useWeapon(int mx, int my) {
+		int dir = 1;
+		int dx = mx - x;
+		int dy = -(my - y);
+		if ((int)Math.abs(dx) > (int)Math.abs(dy)) {
+			if (dx <= 0) {
+				dir = 4;
+			} else {
+				dir = 2;
+			}
+		} else {
+			if (dy <= 0) {
+				dir = 3;
+			} else {
+				dir = 1;
+			}
+		}
+		new Ammo(x, y, dir);
+	}
+	
 }

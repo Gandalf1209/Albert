@@ -11,25 +11,38 @@ public class Enemy {
 	private int x;
 	private int y;
 	private int diff;
+	private int speed;
 	
 	public static List<Enemy> list = new ArrayList<Enemy>();
 	
-	public Enemy(String name, int x, int y, int diff) {
+	public Enemy(String name, int x, int y, int diff, int speed) {
 		this.name = name;
 		this.x = x;
 		this.y = y;
 		this.diff = diff;
+		this.speed = speed;
 		list.add(this);
 	}
 	
 	public static void spawn(int times) {
 		for (int i = 0; i < times; i++) {
-			new Enemy("Syriven", Mathf.random(0, MainGame.WIDTH -100), Mathf.random(0, MainGame.HEIGHT -100), 1);
+			new Enemy("Syriven", Mathf.random(0, MainGame.WIDTH -100), Mathf.random(0, MainGame.HEIGHT -100), 1, Mathf.random(2, 4));
 		}
 	}
 	
 	public void followPlayer() {
-		
+		if (x > Player.x) {
+			x -= speed;
+		}
+		if (x < Player.x) {
+			x += speed;
+		}
+		if (y > Player.y) {
+			y -= speed;
+		}
+		if (y < Player.y) {
+			y += speed;
+		}
 	}
 
 	public String getName() {

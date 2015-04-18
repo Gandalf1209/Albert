@@ -2,6 +2,8 @@ package com.gandalf1209.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import com.gandalf1209.yge2.engine.Application;
 import com.gandalf1209.yge2.engine.Game;
@@ -57,6 +59,15 @@ public class MainGame implements Game {
 			}
 		});
 		
+		d.mouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton() == 1) {
+					Player.useWeapon(e.getX() - d.getWindow().getInsets().left, e.getY() - d.getWindow().getInsets().top);
+				}
+			}
+		});
+		
 		Enemy.spawn(3);
 		
 		d.getWindow().setResizable(false);
@@ -77,11 +88,27 @@ public class MainGame implements Game {
 			Enemy e = Enemy.list.get(i);
 			g.fillRect(e.getX(), e.getY(), 50, 50);
 		}
+		
+		g.setColor(g.hex("#545454"));
+		for (int i = 0; i < Ammo.list.size(); i++) {
+			Ammo a = Ammo.list.get(i);
+			g.fillRect(a.getX(), a.getY(), 10, 10);
+		}
 	}
 
 	@Override
 	public void update() {
 		Player.checkMovement();
+		
+		for (int i = 0; i < Enemy.list.size(); i++) {
+			Enemy e = Enemy.list.get(i);
+			e.followPlayer();
+		}
+		
+		for (int i = 0; i < Ammo.list.size(); i++) {
+			Ammo a = Ammo.list.get(i);
+			a.move();
+		}
 	}
 	
 }
