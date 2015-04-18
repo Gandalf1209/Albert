@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import com.gandalf1209.yge2.engine.Application;
 import com.gandalf1209.yge2.engine.Game;
@@ -28,15 +29,19 @@ public class MainGame implements Game {
 				
 				if (key == Keys.UP || key == Keys.W) {
 					Player.mu = true;
+					Player.dir = 3;
 				}
 				if (key == Keys.DOWN || key == Keys.S) {
 					Player.md = true;
+					Player.dir = 1;
 				}
 				if (key == Keys.RIGHT || key == Keys.D) {
 					Player.mr = true;
+					Player.dir = 2;
 				}
 				if (key == Keys.LEFT || key == Keys.A) {
 					Player.ml = true;
+					Player.dir = 4;
 				}
 			}
 
@@ -68,6 +73,8 @@ public class MainGame implements Game {
 			}
 		});
 		
+		Texture.init();
+		
 		Enemy.spawn(3);
 		
 		d.getWindow().setResizable(false);
@@ -81,7 +88,7 @@ public class MainGame implements Game {
 		g.setBGColor(g.hex("#5CCC72"));
 		
 		g.setColor(g.hex("#007AA3"));
-		g.fillRect(Player.x, Player.y, 50, 50);
+		g.addImage(Texture.getByName("Albert").getSubimage((Player.dir - 1) * 50, 0, 50, 50), Player.x, Player.y, 50, 50);
 		
 		g.setColor(g.hex("#5A1D73"));
 		for (int i = 0; i < Enemy.list.size(); i++) {

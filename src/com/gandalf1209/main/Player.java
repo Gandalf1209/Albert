@@ -6,6 +6,7 @@ public class Player {
 	public static int y = 100;
 	public static int speed = 5;
 	public static int level = 1;
+	public static int dir = 1;
 	
 	public static boolean mu;
 	public static boolean md;
@@ -39,12 +40,13 @@ public class Player {
 			}
 		} else {
 			if (dy <= 0) {
-				dir = 3;
-			} else {
 				dir = 1;
+			} else {
+				dir = 3;
 			}
 		}
 		new Ammo(x, y, dir);
+		Player.dir = dir;
 	}
 	
 }

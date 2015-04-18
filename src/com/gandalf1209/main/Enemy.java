@@ -12,6 +12,7 @@ public class Enemy {
 	private int y;
 	private int diff;
 	private int speed;
+	private int it;
 	
 	public static List<Enemy> list = new ArrayList<Enemy>();
 	
@@ -21,6 +22,7 @@ public class Enemy {
 		this.y = y;
 		this.diff = diff;
 		this.speed = speed;
+		this.it = list.size();
 		list.add(this);
 	}
 	
@@ -42,6 +44,13 @@ public class Enemy {
 		}
 		if (y < Player.y) {
 			y += speed;
+		}
+	}
+	
+	public void remove() {
+		list.remove(it);
+		for (int i = it; i < list.size(); i++) {
+			list.get(i).it--;
 		}
 	}
 
@@ -75,6 +84,22 @@ public class Enemy {
 
 	public void setDiff(int diff) {
 		this.diff = diff;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public int getIt() {
+		return it;
+	}
+
+	public void setIt(int it) {
+		this.it = it;
 	}
 	
 }
