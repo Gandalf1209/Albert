@@ -1,5 +1,6 @@
 package com.gandalf1209.main;
 
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -10,6 +11,7 @@ import com.gandalf1209.yge2.engine.Game;
 import com.gandalf1209.yge2.graphics.Display;
 import com.gandalf1209.yge2.graphics.GraphicsX;
 import com.gandalf1209.yge2.input.Keys;
+import com.gandalf1209.yge2.util.FontHandler;
 
 public class MainGame implements Game {
 
@@ -17,6 +19,8 @@ public class MainGame implements Game {
 	public static final int HEIGHT = 600;
 	
 	public static int STATE = 0;
+	
+	public static FontHandler fh;
 	
 	private Display d;
 	
@@ -44,6 +48,10 @@ public class MainGame implements Game {
 					if (key == Keys.LEFT || key == Keys.A) {
 						Player.ml = true;
 						Player.dir = 4;
+					}
+				} else if (STATE == 0) {
+					if (key == Keys.ENTER) {
+						STATE = 1;
 					}
 				}
 			}
@@ -78,6 +86,10 @@ public class MainGame implements Game {
 			}
 		});
 		
+		fh = new FontHandler();
+		fh.setDefaultLoadingDirectory("/fonts/");
+		fh.loadFont("GameFont.otf");
+		Lore.load();
 		Texture.init();
 		
 		Enemy.spawn(3);
@@ -110,6 +122,18 @@ public class MainGame implements Game {
 			}
 		} else if (STATE == 0) {
 			g.setBGColor(g.hex("#363636"));
+			g.setColor(g.hex("#F0F0F0"));
+			g.setFont(new Font("GameFont", Font.BOLD, 20));
+			for (int i = 0; i < Lore.lore.length; i++) {
+				try {
+					g.drawString(Lore.lore[i], 15, (i * 25) + 20);
+				} catch (Exception e) {
+					// Stupid Whatever
+				}
+			}
+			g.drawString("Move - WASD or Arrows", 15, 400);
+			g.drawString("Shoot - Click in direction", 15, 425);
+			g.drawString("Press Enter to start!", 15, 550);
 		}
 	}
 
