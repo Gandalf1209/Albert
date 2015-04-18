@@ -28,7 +28,7 @@ public class Enemy {
 	
 	public static void spawn(int times) {
 		for (int i = 0; i < times; i++) {
-			new Enemy("Syriven", Mathf.random(0, MainGame.WIDTH -100), Mathf.random(0, MainGame.HEIGHT -100), 1, Mathf.random(2, 4));
+			new Enemy("Syrivi", Mathf.random(0, MainGame.WIDTH -100), Mathf.random(0, MainGame.HEIGHT -100), 1, Mathf.random(2, 4));
 		}
 	}
 	
