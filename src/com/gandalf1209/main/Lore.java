@@ -11,7 +11,7 @@ public class Lore {
 	public static void load() {
 		Arrays.fill(lore, "");
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(Lore.class.getResourceAsStream("/other/lore.txt")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(Lore.class.getResourceAsStream("/lore/lore.txt")));
 			String line;
 			int i = 0;
 			while ((line = br.readLine()) != null) {

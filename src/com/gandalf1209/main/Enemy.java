@@ -45,6 +45,14 @@ public class Enemy {
 		if (y < Player.y) {
 			y += speed;
 		}
+		
+		if (x + 50 > Player.x &&
+				x - 50 < Player.x + 50 &&
+				y + 50 > Player.y &&
+				y - 50 < Player.y + 25) {
+			Player.health -= 2;
+			Player.bounce();
+		}
 	}
 	
 	public void remove() {

@@ -102,33 +102,41 @@ public class MainGame implements Game {
 	
 	@Override
 	public void render(GraphicsX g) {
+		g.setFont(new Font("GameFont", Font.BOLD, 20));
 		if (STATE == 1) {
-			g.setBGColor(g.hex("#5CCC72"));
+			g.setBGImage(Texture.getByName("BG"));
+			
 			//g.setColor(g.hex("#007AA3"));
 			g.addImage(
 					Texture.getByName("Albert").getSubimage(
 							(Player.dir - 1) * 50, 0, 50, 50), Player.x,
 					Player.y, 50, 50);
+			
 			//g.setColor(g.hex("#5A1D73"));
 			for (int i = 0; i < Enemy.list.size(); i++) {
 				Enemy e = Enemy.list.get(i);
 				g.addImage(Texture.getByName(e.getName()), e.getX(), e.getY(),
 						50, 50);
 			}
+			
 			g.setColor(g.hex("#545454"));
 			for (int i = 0; i < Ammo.list.size(); i++) {
 				Ammo a = Ammo.list.get(i);
 				g.addImage(Texture.getByName("Gum"), a.getX(), a.getY(), 10, 10);
 			}
+			
+			g.setColor(g.hex("#F0F0F0"));
+			g.drawString("Health: " + Player.health, 15, 20);
+			
 		} else if (STATE == 0) {
 			g.setBGColor(g.hex("#363636"));
+			
 			g.setColor(g.hex("#F0F0F0"));
-			g.setFont(new Font("GameFont", Font.BOLD, 20));
 			for (int i = 0; i < Lore.lore.length; i++) {
 				try {
 					g.drawString(Lore.lore[i], 15, (i * 25) + 20);
 				} catch (Exception e) {
-					// Stupid Whatever
+					// Stupid Whatever Being Retarded
 				}
 			}
 			g.drawString("Move - WASD or Arrows", 15, 400);

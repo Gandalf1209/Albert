@@ -5,6 +5,7 @@ public class Player {
 	public static int x = 100;
 	public static int y = 100;
 	public static int speed = 5;
+	public static int health = 100;
 	public static int level = 1;
 	public static int dir = 1;
 	
@@ -25,6 +26,21 @@ public class Player {
 		}
 		if (mr) {
 			x += speed;
+		}
+	}
+	
+	public static void bounce() {
+		if (dir == 1) {
+			y -= 100;
+		}
+		if (dir == 2) {
+			x -= 100;
+		}
+		if (dir == 3) {
+			y += 100;
+		}
+		if (dir == 4) {
+			x += 100;
 		}
 	}
 	
